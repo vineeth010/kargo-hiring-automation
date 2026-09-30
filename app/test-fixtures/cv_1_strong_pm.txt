@@ -1,0 +1,26 @@
+Aisha Verma
+aisha.verma.pm@gmail.com | +91 98765 43210 | Mumbai, Maharashtra
+
+Summary
+Product Manager with experience building B2B SaaS products for logistics and supply chain customers. Spends time in customer warehouses and dispatch centers before writing specs. Ships fast, measures impact, kills what doesn't work.
+
+Experience
+
+Product Manager | Freightly Technologies Pvt. Ltd. (Series A, Logistics SaaS), Mumbai | Apr 2024 - Present
+- Sole PM for the carrier-allocation and dispatch-visibility product area, serving 60+ freight forwarder customers
+- Identified that dispatch teams were manually reconciling carrier confirmations over WhatsApp; built and shipped an automated confirmation workflow without a formal spec process, adopted by 40 customers within 6 weeks
+- Spent 3 days embedded at two customer warehouses in Bhiwandi observing dispatch operations before scoping the confirmation workflow rework
+- Shipped 8 features in 18 months; killed a proposed bulk-upload feature after a 2-week pilot showed under 5% adoption, reallocating the sprint to a mobile confirmation flow that reached 65% weekly active use within a month
+- Ran a post-mortem after a data-sync outage affected 12 customers for 3 hours; wrote the internal incident report and coordinated the customer-facing communication with support and sales
+- Worked directly with 2 backend engineers and a designer to redesign the onboarding flow, cutting time-to-first-shipment from 9 days to 4 days
+- Reduced support tickets related to carrier status confusion by 45% after redesigning the status-tracking UI based on 15 customer interviews
+
+Associate Product Manager | Freightly Technologies Pvt. Ltd., Mumbai | Apr 2023 - Mar 2024
+- Owned the customer onboarding checklist end-to-end; rewrote it after discovering through support tickets that 30% of new customers were stuck on carrier API setup
+- Ran weekly customer calls with 10 pilot accounts during the platform's early access phase, translating feedback into the first formal product roadmap
+
+Education
+B.E., Mechanical Engineering | VJTI Mumbai | 2018-2022
+
+Skills
+JIRA, Figma, SQL, Mixpanel, Amplitude, Agile/Scrum

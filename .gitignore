@@ -1,0 +1,8 @@
+node_modules/
+*.log
+.DS_Store
+
+# Redundant with the already-extracted JDs/ and current_hires/ folders that
+# the code actually reads from.
+JDs.zip
+current_hires.zip

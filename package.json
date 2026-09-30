@@ -1,0 +1,15 @@
+{
+  "name": "kargo-hiring-monorepo",
+  "private": true,
+  "workspaces": [
+    "cv-scoring-engine",
+    "app"
+  ],
+  "scripts": {
+    "build:engine": "npm run build -w cv-scoring-engine",
+    "dev": "npm run build:engine && npm run dev -w app",
+    "build": "npm run build:engine && npm run build -w app",
+    "db:generate": "npm run db:generate -w app",
+    "db:migrate": "npm run db:migrate -w app"
+  }
+}
