@@ -1,7 +1,17 @@
+import "./pdfPolyfill.js";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import mammoth from "mammoth";
+import { getPath } from "pdf-parse/worker";
 import { PDFParse } from "pdf-parse";
+
+// Per pdf-parse's own serverless-deployment guidance: in bundled/serverless
+// environments (Vercel, Lambda, etc.) pdfjs-dist can fail to locate its
+// worker script ("Setting up fake worker failed: Cannot find module
+// '.../pdf.worker.mjs'") because bundlers rewrite module paths in ways its
+// default auto-detection doesn't expect. Pointing it at the worker's real
+// on-disk path explicitly avoids that.
+PDFParse.setWorker(getPath());
 
 // Normalizes a CV file (docx, pdf, or plain text) into raw text for the LLM.
 // Mixed formats are expected (per the problem statement) so this dispatches

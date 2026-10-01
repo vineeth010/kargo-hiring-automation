@@ -5,6 +5,23 @@ import { useRef, useState } from "react";
 import type { CandidateDetailJson, QueueRowJson } from "@/lib/apiTypes";
 import type { Role } from "cv-scoring-engine";
 
+// Server errors are normally JSON ({ error }), but a crashed serverless
+// function (e.g. a module-load-time exception) can return an empty or
+// non-JSON body, which makes a bare `res.json()` throw its own confusing
+// "Unexpected end of JSON input" instead of a useful message. This always
+// resolves to a readable string.
+async function extractErrorMessage(res: Response): Promise<string> {
+  const text = await res.text();
+  if (!text) return `Request failed (HTTP ${res.status}${res.statusText ? " " + res.statusText : ""}).`;
+  try {
+    const parsed = JSON.parse(text);
+    if (parsed && typeof parsed.error === "string") return parsed.error;
+  } catch {
+    // Body wasn't JSON — fall through to the raw-text message below.
+  }
+  return `Request failed (HTTP ${res.status}): ${text.slice(0, 300)}`;
+}
+
 const HISTORICAL_LABELS: Record<string, string> = {
   ownershipInAmbiguity: "Ownership in ambiguity",
   groundLevelExposure: "Ground-level exposure",
@@ -116,7 +133,7 @@ function UploadForm({ role, onDone }: { role: Role; onDone: () => void }) {
         formData.append("role", role);
         formData.append("file", file);
         const res = await fetch("/api/candidates/upload", { method: "POST", body: formData });
-        if (!res.ok) throw new Error((await res.json()).error ?? res.statusText);
+        if (!res.ok) throw new Error(await extractErrorMessage(res));
         lines[lines.length - 1] = `${file.name}: done`;
       } catch (err) {
         lines[lines.length - 1] = `${file.name}: failed — ${err instanceof Error ? err.message : String(err)}`;
@@ -616,7 +633,7 @@ function EmailDraftBox({
     });
     setSending(false);
     if (res.ok) onSent();
-    else alert((await res.json()).error);
+    else alert(await extractErrorMessage(res));
   }
 
   return (
